@@ -8,7 +8,7 @@ Get twitter developement account and application information by visiting: *https
 
 
 
-*One time:
+  * One time:
 
 `mkdir data` ( To store the database content locally )
 `virtualenv -p /usr/bin/python venv` ( To use a seperate python environment for this project )
@@ -21,7 +21,7 @@ Get twitter developement account and application information by visiting: *https
 `source venv/bin/activate`
 `mongod --dbpath data/`
 
-  -For testing the information that we are getting:
+  - For testing the information that we are getting:
 
 `python extractTweets.py` 
 
