@@ -2,12 +2,12 @@ import tweepy
 import sys
 import pymongo
 
-#user application credentials
-consumer_key="PROVIDE INFO HERE"
-consumer_secret="PROVIDE INFO HERE"
+# user application credentials
+consumer_key = "5uzIc3mu5bdqKfgPM2Mysnc0V"
+consumer_secret = "cDrkl7CIZlzLfN6688xjJDmN5l2EDX8brTcfZCZUPjoDOdYfh8"
 
-access_token="PROVIDE INFO HERE"
-access_token_secret="PROVIDE INFO HERE"
+access_token = "4904583673-vMkTnb7l9pnR1X6wPhI8ceDR4BCwqexZzYvOWEl"
+access_token_secret = "GiCJGDGW5m61Ew8NRl3Y6zbLuz8Ndlar7hD9CprwsSqxi"
 
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -32,7 +32,7 @@ class CustomStreamListener(tweepy.StreamListener):
 
         self.db.Tweets.insert(data)
 
-	#handle errors without closing stream:
+    # handle errors without closing stream:
     def on_error(self, status_code):
         print >> sys.stderr, 'Encountered error with status code:', status_code
         return True
