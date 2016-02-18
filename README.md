@@ -16,17 +16,17 @@ Get twitter developement account and application information by visiting: *https
 `pip install tweepy`
 `pip install pymongo`
 
-*Everytime you want to get and store information:
+  * Everytime you want to get and store information:
 
 `source venv/bin/activate`
 `mongod --dbpath data/`
 
--For testing the information that we are getting:
+  -For testing the information that we are getting:
 
 `python extractTweets.py` 
 
-  - Modify track to add more keywords for tracking.
+    - Modify track to add more keywords for tracking.
 
--For storing the data into Mongodb:
+  - For storing the data into Mongodb:
 
 `python storeTweetsInMongoDBUsingTweepy.py`
