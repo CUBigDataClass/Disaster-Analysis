@@ -28,9 +28,11 @@ Get twitter developement account and application information by visiting: *https
 
   - For testing the information that we are getting:
 
+  	- Modify track to add more keywords for tracking.
+
 `python extractTweets.py` 
 
-  - Modify track to add more keywords for tracking.
+  
 
   - For storing the data into Mongodb:
 
