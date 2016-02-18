@@ -23,6 +23,7 @@ Get twitter developement account and application information by visiting: *https
   * Everytime you want to get and store information:
 
 `source venv/bin/activate`
+
 `mongod --dbpath data/`
 
   - For testing the information that we are getting:
