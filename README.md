@@ -11,9 +11,13 @@ Get twitter developement account and application information by visiting: *https
   * One time:
 
 `mkdir data` ( To store the database content locally )
+
 `virtualenv -p /usr/bin/python venv` ( To use a seperate python environment for this project )
+
 `source venv/bin/activate` ( To active the virtual enviroment. Needs to be done every time.)
+
 `pip install tweepy`
+
 `pip install pymongo`
 
   * Everytime you want to get and store information:
@@ -25,7 +29,7 @@ Get twitter developement account and application information by visiting: *https
 
 `python extractTweets.py` 
 
-    - Modify track to add more keywords for tracking.
+  - Modify track to add more keywords for tracking.
 
   - For storing the data into Mongodb:
 
