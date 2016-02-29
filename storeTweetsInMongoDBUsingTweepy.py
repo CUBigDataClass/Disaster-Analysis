@@ -19,7 +19,7 @@ class CustomStreamListener(tweepy.StreamListener):
         self.api = api
         super(tweepy.StreamListener, self).__init__()
 
-        self.db = pymongo.MongoClient().Disaster
+        self.db = pymongo.MongoClient().disaster
 
     def on_status(self, status):
         print status.text , "\n"
