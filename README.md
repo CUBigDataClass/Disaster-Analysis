@@ -65,7 +65,7 @@ Get twitter developement account and application information by visiting: *https
 
  `git clone https://github.com/mongodb/mongo-hadoop.git`
 
- - Build
+ - Goto 'mongo-hadoop' folder and Build
 
  `./gradlew jar`
 
