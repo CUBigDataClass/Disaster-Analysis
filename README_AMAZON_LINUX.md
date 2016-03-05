@@ -19,3 +19,15 @@ enabled=1
 `sudo yum install -y mongodb-org`
 
 - Follow README.MD
+
+- To Download apache spark:
+
+`wget http://d3kbcqa49mib13.cloudfront.net/spark-1.6.0-bin-hadoop2.6.tgz`
+
+- Unzip downloaded contents:
+
+`tar -xvf spark-1.6.0-bin-hadoop2.6.tgz`
+
+- Incase build failed due to java, install java development package:
+
+`sudo yum install java-devel`
