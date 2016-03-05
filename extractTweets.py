@@ -30,4 +30,4 @@ class CustomStreamListener(tweepy.StreamListener):
         return True 
 
 sapi = tweepy.streaming.Stream(auth, CustomStreamListener(api))
-sapi.filter(track=['joke'])
+sapi.filter(track=['disaster'])
