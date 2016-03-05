@@ -50,11 +50,13 @@ Get twitter developement account and application information by visiting: *https
   - Modify `venv/bin/activate` to point to the correct location as pointed in your system ( Line 49/50 )
 
 `export SPARK_HOME=$VIRTUAL_ENV/../spark-1.6.0-bin-hadoop2.6`
+
 `export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$PYTHONPATH`
 
   - Install py4j and pytz which is a library on which pyspark is dependent on.
 
 `pip install py4j`
+
 `pip install pytz`
 
 ######Getting MongoDB connector installed ( https://github.com/mongodb/mongo-hadoop/blob/master/spark/src/main/python/README.rst )
