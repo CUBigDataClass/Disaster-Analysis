@@ -80,10 +80,12 @@ Get twitter developement account and application information by visiting: *https
 
  - Modify `venv/bin/activate` to point to the correct location as pointed in your system ( Line 50/51 )
 
- `export SPARK_HOME=$VIRTUAL_ENV/../spark-1.6.0-bin-hadoop2.6`
- `export MONGO_SPARK=$VIRTUAL_ENV/../mongo-hadoop/spark/src/main/python`
- `export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$MONGO_SPARK:$PYTHONPATH`
- `export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$MONGO_SPARK_PYTHON:$PYTHONPATH`
+ ```
+ export SPARK_HOME=$VIRTUAL_ENV/../spark-1.6.0-bin-hadoop2.6
+ export MONGO_SPARK=$VIRTUAL_ENV/../mongo-hadoop/spark/src/main/python
+ export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$MONGO_SPARK:$PYTHONPATH
+ export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$MONGO_SPARK_PYTHON:$PYTHONPATH
+ ```
 
  - Update Disaster-Analysis/spark-1.6.0-bin-hadoop2.6/confspark-defaults.conf with the following so that the JAR file is imported automatically at the time of starting spark:
 
