@@ -50,11 +50,13 @@ Get twitter developement account and application information by visiting: *https
   - Modify `venv/bin/activate` to point to the correct location as pointed in your system ( Line 49/50 )
 
 `export SPARK_HOME=$VIRTUAL_ENV/../spark-1.6.0-bin-hadoop2.6`
+
 `export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$PYTHONPATH`
 
   - Install py4j and pytz which is a library on which pyspark is dependent on.
 
 `pip install py4j`
+
 `pip install pytz`
 
 ######Getting MongoDB connector installed ( https://github.com/mongodb/mongo-hadoop/blob/master/spark/src/main/python/README.rst )
@@ -63,7 +65,7 @@ Get twitter developement account and application information by visiting: *https
 
  `git clone https://github.com/mongodb/mongo-hadoop.git`
 
- - Build
+ - Goto 'mongo-hadoop' folder and Build
 
  `./gradlew jar`
 
@@ -78,10 +80,12 @@ Get twitter developement account and application information by visiting: *https
 
  - Modify `venv/bin/activate` to point to the correct location as pointed in your system ( Line 50/51 )
 
- `export SPARK_HOME=$VIRTUAL_ENV/../spark-1.6.0-bin-hadoop2.6`
- `export MONGO_SPARK=$VIRTUAL_ENV/../mongo-hadoop/spark/src/main/python`
- `export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$MONGO_SPARK:$PYTHONPATH`
- `export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$MONGO_SPARK_PYTHON:$PYTHONPATH`
+ ```
+ export SPARK_HOME=$VIRTUAL_ENV/../spark-1.6.0-bin-hadoop2.6
+ export MONGO_SPARK=$VIRTUAL_ENV/../mongo-hadoop/spark/src/main/python
+ export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$MONGO_SPARK:$PYTHONPATH
+ export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$MONGO_SPARK_PYTHON:$PYTHONPATH
+ ```
 
  - Update Disaster-Analysis/spark-1.6.0-bin-hadoop2.6/confspark-defaults.conf with the following so that the JAR file is imported automatically at the time of starting spark:
 
