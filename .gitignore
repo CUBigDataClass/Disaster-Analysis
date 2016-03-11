@@ -3,4 +3,4 @@ venv/*
 rmk*
 mongo-hadoop/*
 spark-1.6.0-bin-hadoop2.6/*
-
+furonics.pem
