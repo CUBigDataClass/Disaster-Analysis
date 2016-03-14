@@ -1,0 +1,8 @@
+Flask
+flask-bootstrap
+flask-triangle
+repoze.lru
+tweepy
+pymongo
+py4j
+pytz
