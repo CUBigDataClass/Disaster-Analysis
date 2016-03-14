@@ -133,7 +133,7 @@ bower install angularjs --save
 mkdir /home/ec2-user/Disaster-Analysis/flaskapp/templates
 ```
 
-* To get the error log populated in Apache wsgi: Updated flaskapp.wsgi
+<!-- * To get the error log populated in Apache wsgi: Updated flaskapp.wsgi
 ```
 import sys
 import os
@@ -148,7 +148,7 @@ sys.path.insert(0, '/var/www/html/flaskapp')
 from flaskapp import app as application
 from werkzeug.debug import DebuggedApplication
 application = DebuggedApplication(application, True)
-```
+``` -->
 
 Start MongoDB in background with a logfile
 
