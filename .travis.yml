@@ -13,6 +13,4 @@ before_install:
     - pip install -r requirements.txt
 
 script:
-  mkdir data
-  mongod --fork --logpath log_mongodb --dbpath data/
   python storeTweetsInMongoDBUsingTweepy.py
