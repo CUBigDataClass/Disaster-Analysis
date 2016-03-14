@@ -15,8 +15,8 @@ Click of a button with a parameter, figure out number of times the text appeared
 Try plotting a graph of the number of times a parameter occured against the dates it occured.
 
 
-
-* Installing Apache / httpd ( https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-LAMP.html )
+The following can be ignored if Flask was to be used directly!!
+<!-- * Installing Apache / httpd ( https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-LAMP.html )
 
 `sudo yum install httpd`
 
@@ -30,20 +30,20 @@ Try plotting a graph of the number of times a parameter occured against the date
 /etc/init.d/httpd start
 or
 sudo service httpd start
-```
+``` 
 
 
 * Allowing communication on incoming port 80 and 443 ( https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#adding-security-group-rule )
 
 * Installing mod_wsgi ( An apache module which can host any Python WSGI application).
 
-`sudo yum install mod_wsgi`
+`sudo yum install mod_wsgi` -->
 
 * Installing Flask ( http://flask.pocoo.org/ )
 
 ` pip install Flask `
 
-* Create a directory for Flask Application (http://www.datasciencebytes.com/bytes/2015/02/24/running-a-flask-app-on-aws-ec2/)
+<!-- * Create a directory for Flask Application (http://www.datasciencebytes.com/bytes/2015/02/24/running-a-flask-app-on-aws-ec2/)
 
 Creating a directory and using symbolic link to point to another directory. Do this from Disaster-Analysis Directory too
 
@@ -109,5 +109,68 @@ sys.path.insert(0, '/var/www/html/flaskapp')
 
 from flaskapp import app as application
 
+``` -->
+
+* Installing libraries for Flask
+	- Bootstrap
+	- Triangle ( To resolve issue between the template of AngularJS and Flask)
+	- repoze.lru (Import error observed)
+```
+pip install flask-bootstrap
+pip install flask-triangle
+pip install repoze.lru
 ```
 
+* Installing npm and bower
+```
+sudo yum install nodejs npm --enablerepo=epel
+mkdir /home/ec2-user/Disaster-Analysis/flaskapp/static
+cd /home/ec2-user/Disaster-Analysis/flaskapp/static
+bower install angularjs --save
+```
+* Place for storing all the templates
+```
+mkdir /home/ec2-user/Disaster-Analysis/flaskapp/templates
+```
+
+* To get the error log populated in Apache wsgi: Updated flaskapp.wsgi
+```
+import sys
+import os
+import site
+import logging
+
+site.addsitedir("/home/ec2-user/Disaster-Analysis/venv/lib/python2.7/site-packages")
+activate_env=os.path.expanduser("/home/ec2-user/Disaster-Analysis/venv/bin/activate_this.py")
+execfile(activate_env, dict(__file__=activate_env))
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0, '/var/www/html/flaskapp')
+from flaskapp import app as application
+from werkzeug.debug import DebuggedApplication
+application = DebuggedApplication(application, True)
+```
+
+Start MongoDB in background with a logfile
+
+```
+mongod --fork --logpath log_mongodb --dbpath data/
+```
+
+* MongoDB Commands:
+
+```
+Count number of tweets that have no geolocation.
+db.Tweets.find({geo: { $ne: null } }).count()
+
+Shows all Indexes
+db.Tweets.getIndexes()
+
+Creating an Index
+db.Tweets.createIndex({"text":1})
+
+Creating Text Index for Text Query:
+db.Tweets.createIndex({"text":"text"})
+
+Text Query:
+db.Tweets.find({$text: { $search: "Ivory"} })
+```
