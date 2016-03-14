@@ -3,8 +3,8 @@ language: python
 cache:
   - pip
 
-# services:
-#   - mongodb
+services:
+  - mongodb
 
 python:
     - "2.7"
@@ -12,4 +12,7 @@ python:
 before_install:
     - pip install -r requirements.txt
 
-script: python storeTweetsInMongoDBUsingTweepy.py
+script:
+  mkdir data
+  mongod --fork --logpath log_mongodb --dbpath data/
+  python storeTweetsInMongoDBUsingTweepy.py
