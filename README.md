@@ -87,7 +87,7 @@ Get twitter developement account and application information by visiting: *https
  export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$MONGO_SPARK_PYTHON:$PYTHONPATH
  ```
 
- - Update Disaster-Analysis/spark-1.6.0-bin-hadoop2.6/confspark-defaults.conf with the following so that the JAR file is imported automatically at the time of starting spark:
+ - Update Disaster-Analysis/spark-1.6.0-bin-hadoop2.6/conf/spark-defaults.conf.template with the following so that the JAR file is imported automatically at the time of starting spark:
 
   `spark.driver.extraClassPath ABSOLUTE_PATH/Disaster-Analysis/spark-1.6.0-bin-hadoop2.6/lib/mongo-hadoop-spark-2.0.0-SNAPSHOT.jar`
 
