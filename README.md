@@ -1,4 +1,6 @@
 # Real-time disaster analysis using Twitter
+
+[![Build Status](https://travis-ci.org/CUBigDataClass/Disaster-Analysis.svg?branch=master)](https:/travis-ci.org/CUBigDataClass/Disaster-Analysis)
 ## The objective of the project is to detect disaster around the world and help people communicate for help at the time of disaster.
 
 ######Install Mongodb and virtualenv.
