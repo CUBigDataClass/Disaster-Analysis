@@ -1,9 +1,14 @@
 import csv
-from re import split
+import re
 from math import log
 from random import shuffle
 from nltk.corpus import stopwords
+
+from nltk import word_tokenize
+from nltk import pos_tag
 from nltk.stem import WordNetLemmatizer
+from nltk.stem.porter import PorterStemmer
+from nltk.corpus import wordnet
 
 import numpy as np
 from sklearn.feature_selection import SelectKBest, f_regression, chi2
@@ -20,9 +25,34 @@ from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 import argparse
 
+def get_tag(tag):
+    if tag in ['NN', 'NNS', 'NNP', 'NNPS']:
+        return wordnet.NOUN
+    elif tag in ['RB', 'RBR', 'RBS']:
+        return wordnet.ADV
+    elif tag in ['JJ', 'JJR', 'JJS']:
+        return wordnet.ADJ
+    else:
+        return wordnet.VERB
+
+
+def stem_tokens(tokens):
+    stemmer = PorterStemmer()
+    stems = [stemmer.stem(t) for t in tokens]
+    return stems
+
+def tokenize_doc(doc):
+    text = word_tokenize("And now for something completely different")
+
+    wnl = WordNetLemmatizer()
+    tok = word_tokenize(doc)
+    pos_list = pos_tag(tok)
+    tokens = [wnl.lemmatize(pt[0], get_tag(pt[1])) for pt in pos_list]
+    #~ stems = stem_tokens(tokens)
+    #~ return stems
+    return tokens
 
 def classify(text, label):
-
     #~ Testing purpose: 10-fold cross validation
     cv = KFold(n = len(label), n_folds = 10)
 
@@ -30,10 +60,11 @@ def classify(text, label):
             ('vect',
                     CountVectorizer(
                             analyzer='word',
-                            ngram_range=(1),
+                            ngram_range=(1, 1),
                             stop_words = 'english',
                             lowercase=True,
                             token_pattern=r'\b\w+\b',
+                            tokenizer=tokenize_doc,
                             min_df = 1)),
             ('feature_selection',
                     SelectKBest(
@@ -44,6 +75,7 @@ def classify(text, label):
     ])
 
     print "len(label) ", len(label), " | text ", len(text)
+    print ""
 
     clf.fit(np.asarray(text), np.asarray(label))
 
@@ -71,8 +103,6 @@ if __name__ == "__main__":
             #~ if i < 10:
                 #~ i+=1
             tmp = []
-            print "class ", row[5]
-            print "text ", row[10]
             tmp.append(row[5])
             tmp.append(row[10])
             training_data.append(tmp)
@@ -80,7 +110,6 @@ if __name__ == "__main__":
     #~ for i in training_data:
         #~ print "i ", i
     print "len of training data ", len(training_data)
-    print ""
 
     classify(
         [lst[1] for lst in training_data],
