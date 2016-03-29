@@ -1,10 +1,20 @@
 from flask import Flask, render_template , jsonify ,request
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.triangle import Triangle
+from bson import json_util
 import json
 
+######### MONGO DB Related ###########
+import pymongo
+import datetime
 
-########## SPARK RELATED ###########
+from pymongo import MongoClient
+
+client = MongoClient('localhost',27017)
+
+db = client['disaster']
+overView = db['overView']
+########## SPARK RELATED #############
 
 #import pyspark
 #import pymongo_spark
@@ -14,9 +24,10 @@ import json
 #sc = SparkContext(conf=conf)
 #rdd = sc.mongoRDD('mongodb://localhost:27017/disaster.Tweets')
 
-####################################
+######################################
 
 app = Flask(__name__)
+Triangle(app)
 app.config['SERVER_NAME'] = 'ec2-52-36-170-157.us-west-2.compute.amazonaws.com'
 
 bootstrap = Bootstrap(app)
@@ -31,7 +42,14 @@ def hello_world():
 def getCount():
 #    print request
     if request.method == 'GET':
-    	return jsonify(username="Mahesh")
+        #content = json.dumps(,default=json_util.default)
+        content = list(overView.find({},{'_id': 0}))[0]['count']
+        #return jsonify(data=content)
+        #return json.dumps({"auth":"1"})
+        return render_template('displayGraphs.html', content=content)
+        #print content
+        #return jsonify(data="hello")
+    	#return jsonify()
     if request.method == 'POST':
 	#print json.loads(request.data.decode())
         count = rdd.count()
