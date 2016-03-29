@@ -1,0 +1,21 @@
+{
+  "name": "Disaster Analysis",
+  "homepage": "https://github.com/CUBigDataClass/Disaster-Analysis",
+  "description": "Integrating Tweeter Data with Apache Spark / MongoDB / AngularJS / Flask / D3",
+  "main": "",
+  "moduleType": [],
+  "authors": [
+    "Mahesh Kumar Ravindranathan"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.0"
+  }
+}
