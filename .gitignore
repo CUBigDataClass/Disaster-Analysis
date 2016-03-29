@@ -5,3 +5,5 @@ mongo-hadoop/*
 spark-1.6.0-bin-hadoop2.6/*
 spark-1.6.1-bin-hadoop2.6/*
 furonics.pem
+log_mongodb*
+.processID
