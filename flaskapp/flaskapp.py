@@ -58,6 +58,19 @@ def getCount():
 	#return json.loads(request.data.decode())['search']
 	#return jsonify(data="hello")	
 
+
+@app.route('/getCountHourly/',methods=['GET'])
+def getHourlyCount():
+    content = list(overView.find({},{'_id': 0}))
+    listCreation =  [[0 for x in range(6)] for x in range(222)]
+    totalCount = 0
+    for i in content[-6:]:
+        count = 0
+        for j in i['count']:
+            listCreation[count][totalCount] = i['count'][j]    
+            count += 1
+        totalCount += 1 
+    return render_template('displayGraphs.html', content=listCreation)
 if __name__ == '__main__':
   app.debug = True
   app.run(debug=True,host=app.config['SERVER_NAME'], port=80)
