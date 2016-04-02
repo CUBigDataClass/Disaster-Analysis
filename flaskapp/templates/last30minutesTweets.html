@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Bar chart grouping</title>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   <script src="http://code.highcharts.com/highcharts.js"></script>  
+</head>
+<body>
+<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+<script language="JavaScript">
+$(document).ready(function() {  
+   var title = {
+      text: 'Disaster related tweets'   
+   };
+   var xAxis = {
+      categories: ['Bomb', 'Fear', 'Fire', 'Death', 'Attack']
+   };
+   var labels = {
+      items: [{
+         html: 'Change of tweets for last 3 queries',
+            style: {
+               left: '50px',
+               top: '18px',
+               color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+            }
+      }]
+   };
+   var series= [{
+        type: 'column',
+            name: 'Last 10 minutes',
+            data: [360, 318, 876, 769, 692]
+        }, {
+            type: 'column',
+            name: 'Last 20 minutes',
+            data: [278, 213, 594, 757, 456]
+        }, {
+            type: 'column',
+            name: 'Last 30 minutes',
+            data: [206, 287, 626, 721, 546]
+        }, {
+            type: 'spline',
+            name: 'Average',
+            data: [281, 272.6, 698.6, 749, 564],
+            marker: {
+                lineWidth: 2,
+                lineColor: Highcharts.getOptions().colors[3],
+                fillColor: 'white'
+            }
+        }
+   ];     
+      
+   var json = {};   
+   json.title = title;   
+   json.xAxis = xAxis;
+   json.labels = labels;  
+   json.series = series;
+   $('#container').highcharts(json);  
+});
+</script>
+</body>
+</html>
