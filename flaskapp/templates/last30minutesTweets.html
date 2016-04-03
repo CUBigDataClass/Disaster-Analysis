@@ -14,6 +14,13 @@ $(document).ready(function() {
    var xAxis = {
       categories: ['Bomb', 'Fear', 'Fire', 'Death', 'Attack']
    };
+   
+   var yAxis = {
+      title: {
+         text: 'Occurence in tweets'
+      }
+   };
+   
    var labels = {
       items: [{
          html: 'Change of tweets for last 3 queries',
@@ -51,6 +58,7 @@ $(document).ready(function() {
    var json = {};   
    json.title = title;   
    json.xAxis = xAxis;
+   json.yAxis = yAxis;
    json.labels = labels;  
    json.series = series;
    $('#container').highcharts(json);  
