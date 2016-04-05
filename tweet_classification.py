@@ -14,6 +14,7 @@ import numpy as np
 from sklearn.feature_selection import SelectKBest, f_regression, chi2
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+from sklearn.decomposition import TruncatedSVD
 from sklearn.pipeline import Pipeline
 from sklearn import svm
 from sklearn.cross_validation import KFold
@@ -46,8 +47,9 @@ def tokenize_doc(doc):
 
     wnl = WordNetLemmatizer()
     tok = word_tokenize(doc)
-    pos_list = pos_tag(tok)
-    tokens = [wnl.lemmatize(pt[0], get_tag(pt[1])) for pt in pos_list]
+    #~ pos_list = pos_tag(tok)
+    #~ tokens = [wnl.lemmatize(pt[0], get_tag(pt[1])) for pt in pos_list]
+    tokens = [wnl.lemmatize(t, wordnet.VERB) for t in tok]
     #~ stems = stem_tokens(tokens)
     #~ return stems
     return tokens
@@ -58,7 +60,7 @@ def classify(text, label):
 
     clf = Pipeline([
             ('vect',
-                    CountVectorizer(
+                    TfidfVectorizer(
                             analyzer='word',
                             ngram_range=(1, 1),
                             stop_words = 'english',
@@ -66,10 +68,12 @@ def classify(text, label):
                             token_pattern=r'\b\w+\b',
                             tokenizer=tokenize_doc,
                             min_df = 1)),
-            ('feature_selection',
-                    SelectKBest(
-                            chi2,
-                            k=35)),
+            ('dim_reduction',
+                    TruncatedSVD(n_components=100)),
+            #~ ('feature_selection',
+                    #~ SelectKBest(
+                            #~ chi2,
+                            #~ k=35)),
             ('classification',
                     SVC())
     ])
