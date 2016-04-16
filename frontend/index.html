@@ -140,7 +140,7 @@
 		
             </div>
             <div class="panel-body-map">
-              <div id="map" style="height:380px;"></div>  
+              <div id="chart-box-1" style="width:500px; height:400px;"></div>  
             </div>
           </div>
 
@@ -152,7 +152,7 @@
                 
             </div>
             <div class="panel-body-map">
-              <div id="chart-box-1" style="width:500px; height:400px;"></div>   
+              <div id="map" style="height:380px;"></div> 
             </div>
           </div>
 
@@ -182,14 +182,14 @@
     <script src="js/scripts.js"></script>
 
   <script>
-     //My highchart script
+     //Highcharts for viz panel #1
 
      var chart1;
       $(function() {
       chart1 = new Highcharts.Chart({
          chart: {
             renderTo: 'chart-box-1',
-             width: 700,
+             width: 1032,
              height:400
          },
 
