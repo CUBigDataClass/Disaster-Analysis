@@ -8,21 +8,21 @@
 
     <title>Disaster Analysis using tweets</title>
 
-    <!-- Bootstrap CSS -->    
+    <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
     <link href="css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />    
- 
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+
     <!-- Custom styles -->
-	<link rel="stylesheet" href="css/fullcalendar.css">
+	<!-- <link rel="stylesheet" href="css/fullcalendar.css"> -->
 	<link href="css/widgets.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet" />
-	<link href="css/xcharts.min.css" rel=" stylesheet">	
+	<link href="css/xcharts.min.css" rel=" stylesheet">
 	<link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
@@ -35,8 +35,8 @@
   <body>
   <!-- container section start -->
   <section id="container" class="">
-     
-      
+
+
       <header class="header dark-bg">
             <div class="toggle-nav">
                 <div class="icon-reorder tooltips" data-original-title="" data-placement="bottom"><i class="icon_menu"></i></div>
@@ -47,120 +47,120 @@
             <!--logo end-->
                  <div class="nav search-row" id="top_menu">
                 <!--  search bar start -->
-                <ul class="nav top-menu">                    
+                <ul class="nav top-menu">
                     <li>
                         <form class="navbar-form">
                             <input class="form-control" placeholder="Search" type="text">
                         </form>
-                    </li>                    
+                    </li>
                 </ul>
-                <!--  search bar end -->                
+                <!--  search bar end -->
             </div>
-           
-      </header>      
+
+      </header>
       <!--header end-->
 
       <!--sidebar start-->
       <aside>
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
-              <ul class="sidebar-menu">                
+              <ul class="sidebar-menu">
                   <li class="active">
                       <a class="" href="index.html">
-                          
+
                           <span>Dashboard</span>
                       </a>
                   </li>
 				  <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          
+
                           <span>Charts</span>
                        </a>
-                  </li>       
+                  </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <span>About</span>
-                          
+
                       </a>
-                    
+
                   </li>
                   <li>
                       <a class="" href="">
                           <span>Team</span>
                       </a>
-                  </li>      
-                  
+                  </li>
+
               </ul>
               <!-- sidebar menu end-->
           </div>
       </aside>
       <!--sidebar end-->
-      
+
       <!--main content start-->
       <section id="main-content">
-          <section class="wrapper">            
+          <section class="wrapper">
               <!--overview start-->
-              
+
             <div class="row">
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<div class="info-box blue-bg">
 						<i class="fa fa-twitter"></i>
 						<div class="count">100.7k</div>
-						<div class="title">Tweets Collected</div>						
-					</div><!--/.info-box-->			
+						<div class="title">Tweets Collected</div>
+					</div><!--/.info-box-->
 				</div><!--/.col-->
-				
+
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<div class="info-box brown-bg">
 						<i class="fa fa-key"> </i>
 						<div class="count">222</div>
-						<div class="title">Keywords used</div>						
-					</div><!--/.info-box-->			
-				</div><!--/.col-->	
-				
+						<div class="title">Keywords used</div>
+					</div><!--/.info-box-->
+				</div><!--/.col-->
+
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<div class="info-box dark-bg">
 						<i class="fa fa-globe"></i>
 						<div class="count"></div>
-						<div class="title">Major disasters identified</div>						
-					</div><!--/.info-box-->			
+						<div class="title">Major disasters identified</div>
+					</div><!--/.info-box-->
 				</div><!--/.col-->
-				
-				
+
+
 			</div><!--/.row-->
 
       <!--Panel for visualization start-->
 
       <div class="row">
         <div class="col-lg-9 col-md-12">
-          
+
           <div class="panel panel-default">
             <div class="panel-heading">
               <h2></i><strong>Visualization #1</strong></h2>
-		
+
             </div>
             <div class="panel-body-map">
-              <div id="chart-box-1" style="width:500px; height:400px;"></div>  
+              <div id="chart-box-1" style="width:500px; height:400px;"></div>
             </div>
           </div>
 
             <div class="col-lg-12 col-md-12">
-          
+
           <div class="panel panel-default">
             <div class="panel-heading">
               <h2></i><strong>Visualization #2</strong></h2>
-                
             </div>
             <div class="panel-body-map">
-              <div id="map" style="height:380px;"></div> 
+              <div id="contain" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+              <!-- <div id="map" style="height:380px;"></div> -->
             </div>
           </div>
 
         </div>
-		              
+
 				<!--Panel for visualization end-->
 
-		
+
           </section>
       </section>
       <!--main content end-->
@@ -178,11 +178,72 @@
     <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="js/c3Visualization.js" type="text/javascript"></script>
+    <!-- <script src="js/c3Visualization.js" type="text/javascript"></script> -->
     <script src="js/scripts.js"></script>
 
   <script>
      //Highcharts for viz panel #1
+     var chart2;
+     $(function () {
+             chart2 = new Highcharts.chart({
+                 chart: {
+                     renderTo: 'contain',
+                     zoomType: 'x'
+                 },
+                 title: {
+                     text: 'Frequency of Disaster Related Terms in Tweets'
+                 },
+                 subtitle: {
+                     text: document.ontouchstart === undefined ?
+                             'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                 },
+                 xAxis: {
+                     categories: ['fire', 'bomb', 'earthquake', 'shooting', 'tornado']
+                 },
+                 yAxis: {
+                     title: {
+                         text: 'Rate of Term'
+                     },
+                     min: 0
+                 },
+                 legend: {
+                     enabled: false
+                 },
+                 plotOptions: {
+                     area: {
+                         fillColor: {
+                             linearGradient: {
+                                 x1: 0,
+                                 y1: 0,
+                                 x2: 0,
+                                 y2: 1
+                             },
+                             stops: [
+                                 [0, Highcharts.getOptions().colors[0]],
+                                 [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                             ]
+                         },
+                         marker: {
+                             radius: 2
+                         },
+                         lineWidth: 1,
+                         states: {
+                             hover: {
+                                 lineWidth: 1
+                             }
+                         },
+                         threshold: null
+                     }
+                 },
+
+                 series: [{
+                     type: 'area',
+                     name: 'Frequency of Term',
+                     data: [100, 50, 27, 199, 220]
+                 }]
+             });
+     });
+
 
      var chart1;
       $(function() {
@@ -194,7 +255,7 @@
          },
 
          title :{
-      text: 'Distribution of top 5 disaster related keywords'   
+      text: 'Distribution of top 5 disaster related keywords'
    },
             xAxis: {
         categories: ['Bomb', 'Fear', 'Fire', 'Death', 'Attack'],
@@ -221,15 +282,15 @@
         }, {
             type: 'column',
             name: '30 minutes ago',
-            data: [206, 287, 626, 721, 546]
+            data: [206, 287, 626, 721, 546],
         }, {
             type: 'spline',
             name: 'Average',
             data: [281, 272.6, 698.6, 749, 564],
             marker: {
                 lineWidth: 2,
-                lineColor: Highcharts.getOptions().colors[3],
-                fillColor: 'white'
+                lineColor: Highcharts.getOptions().colors[2],
+                fillColor: 'black'
             }
         }
    ]
@@ -239,7 +300,7 @@
       //knob
       $(function() {
         $(".knob").knob({
-          'draw' : function () { 
+          'draw' : function () {
             $(this.i).val(this.cv + '%')
           }
         })
@@ -261,7 +322,7 @@
       $(function(){
           $('select.styled').customSelect();
       });
-	  
+
 	  /* ---------- Map ---------- */
 	$(function(){
 	  $('#map').vectorMap({
