@@ -22,6 +22,9 @@ from sklearn.cross_validation import cross_val_score
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.linear_model import SGDClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import LogisticRegression
+
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 import argparse
@@ -57,34 +60,38 @@ def tokenize_doc(doc):
 def classify(text, label):
     #~ Testing purpose: 10-fold cross validation
     cv = KFold(n = len(label), n_folds = 10)
+    #~ n_c = [100, 200, 500, 1000, 2000, 5000, 10000]
 
-    clf = Pipeline([
-            ('vect',
-                    TfidfVectorizer(
-                            analyzer='word',
-                            ngram_range=(1, 1),
-                            stop_words = 'english',
-                            lowercase=True,
-                            token_pattern=r'\b\w+\b',
-                            tokenizer=tokenize_doc,
-                            min_df = 1)),
-            ('dim_reduction',
-                    TruncatedSVD(n_components=100)),
-            #~ ('feature_selection',
-                    #~ SelectKBest(
-                            #~ chi2,
-                            #~ k=35)),
-            ('classification',
-                    SVC())
-    ])
-
-    print "len(label) ", len(label), " | text ", len(text)
-    print ""
-
-    clf.fit(np.asarray(text), np.asarray(label))
-
-    cv_score = cross_val_score(clf, text, label, cv = cv, verbose = 1)
-    print "Accuracy List ", cv_score, " | Avg Accuracy ", np.mean(cv_score)
+    for i in n_c:
+        clf = Pipeline([
+                ('vect',
+                        TfidfVectorizer(
+                                analyzer='word',
+                                ngram_range=(1, 1),
+                                stop_words = 'english',
+                                lowercase=True,
+                                token_pattern=r'\b\w+\b',
+                                tokenizer=tokenize_doc,
+                                min_df = 1)),
+                ('dim_reduction',
+                        TruncatedSVD(n_components=i)),
+                #~ ('feature_selection',
+                        #~ SelectKBest(
+                                #~ chi2,
+                                #~ k=35)),
+                ('classification',
+                        LogisticRegression())
+                        #~ SVC(kernel = 'linear'))
+        ])
+    
+        print "len(label) ", len(label), " | text ", len(text)
+        print ""
+    
+        clf.fit(np.asarray(text), np.asarray(label))
+    
+        cv_score = cross_val_score(clf, text, label, cv = cv, verbose = 1)
+        print "Log Reg | n_c = ", i
+        print "Accuracy List ", cv_score, " | Avg Accuracy ", np.mean(cv_score)
 
 
     #~ return pred_y
