@@ -14,6 +14,8 @@ client = MongoClient('localhost',27017)
 
 db = client['disaster']
 overView = db['overView']
+overView = db['overAll10MinuteAverage']
+
 ########## SPARK RELATED #############
 
 #import pyspark
@@ -26,9 +28,12 @@ overView = db['overView']
 
 ######################################
 
+def date_handler(obj):
+    return obj.isoformat() if hasattr(obj, 'isoformat') else obj
+
 app = Flask(__name__)
 Triangle(app)
-app.config['SERVER_NAME'] = 'ec2-52-36-170-157.us-west-2.compute.amazonaws.com'
+app.config['SERVER_NAME'] = 'ec2-52-36-190-71.us-west-2.compute.amazonaws.com'
 
 bootstrap = Bootstrap(app)
 
@@ -37,6 +42,29 @@ def hello_world():
   #return 'Hello from Flask!'
   return render_template('index.html')
 
+
+@app.route('/test/', defaults={'KeyWord': None})
+@app.route('/test/<KeyWord>')
+def test(KeyWord):
+    if( KeyWord == None ): 
+        return render_template('test.html')
+    #return jsonify(data=KeyWord)
+    content = list(overView.find({},{'_id': 0,'date': 1,'average.'+KeyWord:1}))
+    content1 = []
+    for x in content[0:5]:
+        content1.append([x['date'] , x['average'][KeyWord]])
+    #print content
+    return render_template('test.html', content=json_util.dumps(content1))
+    #return render_template('test.html')
+
+@app.route('/getJSON/', defaults={'KeyWord': None})
+@app.route('/getJSON/<KeyWord>')
+def test1(KeyWord):
+    content = list(overView.find({},{'_id': 0,'date': 1,'average.'+KeyWord:1}))
+    content1 = []
+    for x in content:
+        content1.append([x['date'] , x['average'][KeyWord]])
+    return json_util.dumps(content1)
 
 @app.route('/getCount/',methods=['GET', 'POST'])
 def getCount():
@@ -52,8 +80,9 @@ def getCount():
     	#return jsonify()
     if request.method == 'POST':
 	#print json.loads(request.data.decode())
-        count = rdd.count()
-        print count
+        #count = rdd.count()
+        #print count
+	count = 1
 	return jsonify(data=count)
 	#return json.loads(request.data.decode())['search']
 	#return jsonify(data="hello")	
@@ -70,7 +99,7 @@ def getHourlyCount():
             listCreation[count][totalCount] = i['count'][j]    
             count += 1
         totalCount += 1 
-    return render_template('displayGraphs.html', content=listCreation)
+    return render_template('displayGraphHourly.html', content=listCreation)
 if __name__ == '__main__':
   app.debug = True
   app.run(debug=True,host=app.config['SERVER_NAME'], port=80)

@@ -1,0 +1,22 @@
+var disasterAnalysis = angular.module('disasterAnalysis', []);
+
+disasterAnalysis.controller('displayGraphsController', ['$scope','$http','$window',function ($scope,$http,$window) {
+
+
+$scope.getGraphInfo = function ()
+	{
+		$http({
+  			method: 'GET',
+  			url: 'fire'
+			}).then(function successCallback(response) 
+			{
+			$scope.data = response.data;
+                                 console.log($scope.data)
+    			}, function errorCallback(response) {
+                     });
+		//$window.getGraph();
+		//$window.alert("hello");
+		console.log($scope.content);
+		getGraph();
+	}
+}]);
