@@ -1,7 +1,16 @@
 import pymongo
 import datetime
-
+from operator import itemgetter
+import pprint
+import requests
+import json
+from collections import Counter
 from pymongo import MongoClient
+from collections import defaultdict
+
+from mediameter.cliff import Cliff
+my_cliff = Cliff('http://localhost',8080)
+
 
 client = MongoClient('localhost',27017)
 
@@ -14,8 +23,35 @@ dateKolkataCollapse1 = datetime.datetime(2016, 3, 31, 8, 10 , 0)
 dateKolkataCollapse2 = datetime.datetime(2016, 3, 31, 10, 30 , 0)
 
 bridgeCollapseTweets=Tweets.find({"created_at" : { '$gt' : dateKolkataCollapse1 , '$lt': dateKolkataCollapse2 } , '$text': {'$search': "bridge collapse"}}).distinct("text")#.count()
+d = Counter()
+#d = defaultdict(int)
 for content in bridgeCollapseTweets:
-    print content
+    for countContent in content.split():
+        d[countContent] += 1
+useToGetLocation = "";
+for k,v in d.most_common(30):
+    useToGetLocation += k + " "
+
+payload = {'text':useToGetLocation,'demonyms': 'false'}
+r = requests.post("http://cliff.mediameter.org/process", data=payload)
+pp = pprint.PrettyPrinter(indent=4)
+pp.pprint(json.loads(r.text)['results']['places']['focus']['cities'][0])
+lat=json.loads(r.text)['results']['places']['focus']['cities'][0]['lat']
+lon=json.loads(r.text)['results']['places']['focus']['cities'][0]['lon']
+print lat,lon
+pp.pprint(json.loads(r.text))
+#print(r.text)
+
+#content = my_cliff.parseText( useToGetLocation )
+#print content
+#test = sorted(d, key=d.get, reverse=True)
+#print test
+#keys=list(test.keys())
+#print keys
+#for w in sorted(d, key=d.get, reverse=True):
+#  print w.encode('ascii', 'ignore').decode('ascii')
+#print d
+        
 #print bridgeCollapseTweets
 #for content in beforeCollapseTweets:
 #    for issue in count.keys():

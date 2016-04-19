@@ -4,43 +4,29 @@
 <div id="chart"></div>
 <div ng-app="disasterAnalysis" ng-controller="displayGraphsController"  >
 <div class="page-header">
-  <form role="form">
-  <div class="form-group">
-    
-    <label for="search">Search number of time for the word:</label>
-    <input type="text" class="form-control" id="searchWord" ng-model="search">
-    <input type="text" class="form-control" ng-model="search" readonly>
-  </div>
-	
-  	<button type="submit" class="btn btn-default" ng-click="sendInfo()" >Submit</button>
- </form>
-
-
 <form name="myForm">
-    <label for="repeatSelect"> Repeat select: </label>
-    <select name="repeatSelect" id="repeatSelect" ng-model="data.repeatSelect">
+    <label for="repeatSelect"> Select a Disaster Type: </label>
+    <select name="repeatSelect" id="repeatSelect" ng-model="data.repeatSelect" ng-change="getGraphInfo()" >
       <option ng-repeat="option in data.availableOptions" value="{{option.id|angular}}">{{option.name|angular}}</option>
     </select>
 </form>
-<hr>
-<tt>repeatSelect = {{data.repeatSelect|angular}}</tt><br/>
-
-<button type="submit" class="btn btn-default" ng-click="getGraphInfo()"> GetGraphInfo</button>
 <div id="container" style="height: 400px"></div>
-{{content}}
 </div>
-<script>
-//	var content = {{ content | safe }}
-</script>
 </div>
+<div id="map_wrapper">
+    <div id="map_canvas" class="mapping"></div>
+</div>
+
 {% endblock %}
 {% block scripts %}
     {{ super() }}
+    <link href="/static/css/map.css" rel="stylesheet" type="text/css">
     <link href="/static/css/c3.css" rel="stylesheet" type="text/css">
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-3d.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="/static/c3.min.js"></script>
     <script src="/static/d3/graphPerWord10MinuteAnalysis.js"></script>
-    <script src="/static/angular/allInOneGraph.js"></script>    
+    <script src="/static/angular/allInOneGraph.js"></script>
+    <script src="/static/maps.js"></script>  
 {% endblock %}
