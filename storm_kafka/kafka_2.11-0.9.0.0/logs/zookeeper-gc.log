@@ -1,0 +1,32 @@
+OpenJDK 64-Bit Server VM (24.95-b01) for linux-amd64 JRE (1.7.0_99-b00), built on Mar 28 2016 23:56:47 by "mockbuild" with gcc 4.8.3 20140911 (Red Hat 4.8.3-9)
+Memory: 4k page, physical 62919504k(22772792k free), swap 0k(0k free)
+CommandLine flags: -XX:+DisableExplicitGC -XX:InitialHeapSize=536870912 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ManagementServer -XX:MaxGCPauseMillis=20 -XX:MaxHeapSize=536870912 -XX:+PrintGC -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedOops -XX:+UseG1GC 
+2016-04-21T00:17:28.386+0000: 9196.996: [GC pause (young), 0.0053640 secs]
+   [Parallel Time: 3.9 ms, GC Workers: 8]
+      [GC Worker Start (ms): Min: 9196996.6, Avg: 9196997.1, Max: 9197000.0, Diff: 3.5]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 1.7, Max: 3.7, Diff: 3.6, Sum: 13.9]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+         [Processed Buffers: Min: 0, Avg: 2.1, Max: 9, Diff: 9, Sum: 17]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 1.2, Max: 2.0, Diff: 2.0, Sum: 9.4]
+      [Termination (ms): Min: 0.0, Avg: 0.3, Max: 0.4, Diff: 0.4, Sum: 2.3]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [GC Worker Total (ms): Min: 0.3, Avg: 3.2, Max: 3.7, Diff: 3.5, Sum: 25.9]
+      [GC Worker End (ms): Min: 9197000.3, Avg: 9197000.3, Max: 9197000.3, Diff: 0.0]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Clear CT: 0.2 ms]
+   [Other: 1.2 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 1.1 ms]
+      [Ref Enq: 0.0 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 25.0M(25.0M)->0.0B(22.0M) Survivors: 0.0B->3072.0K Heap: 25.0M(512.0M)->3055.0K(512.0M)]
+ [Times: user=0.03 sys=0.00, real=0.01 secs] 
+Heap
+ garbage-first heap   total 524288K, used 14318K [0x00000000d5a00000, 0x00000000f5a00000, 0x00000000f5a00000)
+  region size 1024K, 15 young (15360K), 3 survivors (3072K)
+ compacting perm gen  total 20480K, used 9608K [0x00000000f5a00000, 0x00000000f6e00000, 0x0000000100000000)
+   the space 20480K,  46% used [0x00000000f5a00000, 0x00000000f63622b8, 0x00000000f6362400, 0x00000000f6e00000)
+No shared spaces configured.

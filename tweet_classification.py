@@ -60,7 +60,7 @@ def tokenize_doc(doc):
 def classify(text, label):
     #~ Testing purpose: 10-fold cross validation
     cv = KFold(n = len(label), n_folds = 10)
-    #~ n_c = [100, 200, 500, 1000, 2000, 5000, 10000]
+    n_c = [100, 200, 500, 1000, 2000, 5000, 10000]
 
     for i in n_c:
         clf = Pipeline([
