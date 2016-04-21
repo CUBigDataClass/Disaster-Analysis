@@ -1069,6 +1069,7 @@ div[data-role="editor-toolbar"] {
   -moz-box-shadow: none;
   box-shadow: none;
   margin-bottom: 30px;
+  margin-top: 20px;
 }
 .panel .panel-heading {
   line-height: 34px;
