@@ -12,7 +12,14 @@
           )
     }
     ;; bolt configuration
-    {"count-bolt" (python-bolt-spec
+    {"classify-bolt" (python-bolt-spec
+          options
+          {"word-spout" :shuffle}
+          "bolts.classifytweet.ClassifyTweet"
+          ["word"]
+          :p 2
+          )
+     "count-bolt" (python-bolt-spec
           options
           {"word-spout" :shuffle}
           "bolts.wordcount.WordCounter"
