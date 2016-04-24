@@ -13,9 +13,11 @@ var getGraph = (function (content) {
 	}	
 	data.forEach(logArrayElements)
 	//console.log(data)
-        $('#container').highcharts({
+        $('#dropdown-terms').highcharts({
             chart: {
-                zoomType: 'x'
+                zoomType: 'x',
+		width: 1032,
+		height: 400
             },
             title: {
                 text: 'Disaster Analysis (keywords) against time'

@@ -1,3 +1,5 @@
+from __future__ import print_function 
+import sys
 from flask import Flask, render_template , jsonify ,request
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.triangle import Triangle
@@ -15,7 +17,7 @@ client = MongoClient('localhost',27017)
 db = client['disaster']
 overView = db['overView']
 overView = db['overAll10MinuteAverage']
-
+Tweets = db['Tweets']
 ########## SPARK RELATED #############
 
 #import pyspark
@@ -37,24 +39,27 @@ app.config['SERVER_NAME'] = 'ec2-52-39-134-88.us-west-2.compute.amazonaws.com'
 
 bootstrap = Bootstrap(app)
 
-@app.route('/',methods=['GET', 'POST'])
+@app.route('/home',methods=['GET', 'POST'])
 def hello_world():
   #return 'Hello from Flask!'
-  return render_template('index.html')
+  return render_template('newIndex.html')
 
 
-@app.route('/test/', defaults={'KeyWord': None})
-@app.route('/test/<KeyWord>')
+@app.route('/', defaults={'KeyWord': None})
+@app.route('/<KeyWord>')
 def test(KeyWord):
     if( KeyWord == None ): 
-        return render_template('test.html')
+        return render_template('newIndex.html')
     #return jsonify(data=KeyWord)
     content = list(overView.find({},{'_id': 0,'date': 1,'average.'+KeyWord:1}))
     content1 = []
+    count = Tweets.count()
+    {{ count }}
+    print (count, file=sys.stderr)
     for x in content[0:5]:
         content1.append([x['date'] , x['average'][KeyWord]])
     #print content
-    return render_template('test.html', content=json_util.dumps(content1))
+    return render_template('newIndex.html', content=json_util.dumps(content1), data=count)
     #return render_template('test.html')
 
 @app.route('/getJSON/', defaults={'KeyWord': None})
