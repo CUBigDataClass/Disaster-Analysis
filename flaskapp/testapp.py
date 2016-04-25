@@ -1,4 +1,4 @@
-from __future__ import print_function 
+#from __future__ import print_function 
 import sys
 from flask import Flask, render_template , jsonify ,request
 from flask.ext.bootstrap import Bootstrap
@@ -45,22 +45,34 @@ def hello_world():
   return render_template('newIndex.html')
 
 
+@app.route('/getTotalCount',methods=['GET', 'POST'])
+def getTotalCount():
+    count  = ""
+    with open("/home/ec2-user/Disaster-Analysis/totalCount","r") as text_file:
+        count = str(text_file.readlines()[0])
+        return count
+
+
 @app.route('/', defaults={'KeyWord': None})
 @app.route('/<KeyWord>')
 def test(KeyWord):
+    #count = db.Tweets.count()
+    count  = ""
+    with open("/home/ec2-user/Disaster-Analysis/totalCount","r") as text_file:
+        count = str(text_file.readlines()[0])
+    #print "Count: " , count
     if( KeyWord == None ): 
-        return render_template('newIndex.html')
+        return render_template('newIndex.html')#,count=count)
     #return jsonify(data=KeyWord)
     content = list(overView.find({},{'_id': 0,'date': 1,'average.'+KeyWord:1}))
     content1 = []
-    count = Tweets.count()
-    {{ count }}
-    print (count, file=sys.stderr)
+    #print (count, file=sys.stderr)
     for x in content[0:5]:
         content1.append([x['date'] , x['average'][KeyWord]])
     #print content
-    return render_template('newIndex.html', content=json_util.dumps(content1), data=count)
+    return render_template('newIndex.html', content=json_util.dumps(content1))#, count=count)
     #return render_template('test.html')
+
 
 @app.route('/getJSON/', defaults={'KeyWord': None})
 @app.route('/getJSON/<KeyWord>')
@@ -70,6 +82,7 @@ def test1(KeyWord):
     for x in content:
         content1.append([x['date'] , x['average'][KeyWord]])
     return json_util.dumps(content1)
+
 
 @app.route('/getCount/',methods=['GET', 'POST'])
 def getCount():
@@ -105,6 +118,8 @@ def getHourlyCount():
             count += 1
         totalCount += 1 
     return render_template('displayGraphHourly.html', content=listCreation)
+
+
 if __name__ == '__main__':
   app.debug = True
   app.run(debug=True,host=app.config['SERVER_NAME'], port=80)

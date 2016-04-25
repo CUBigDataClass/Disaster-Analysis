@@ -10,7 +10,7 @@ Website: http://geekslabs.com/
 @import url(line-icons.css);
 
 body {
-    color: #797979;
+    color: #060606;
     background: #eeeeee;
     font-family: 'Lato', sans-serif;
     padding: 0px !important;
@@ -21,7 +21,7 @@ h1,h2,h3,h4,h5{
     font-weight: 300;
 }
 label{
-    font-weight: 300;   
+    font-weight: 800;   
 }
 ul li {
     list-style: none;
@@ -907,7 +907,7 @@ div[data-role="editor-toolbar"] {
 /* .info-box
 =================================================================== */
 .info-box {
-  min-height: 140px;
+  min-height: 170px;
   margin-bottom: 30px;
   padding: 20px;
   color: white;
@@ -923,7 +923,6 @@ div[data-role="editor-toolbar"] {
   width: 100px;
   float: left;
   text-align: center;
-  margin-right: 20px;
   padding-right: 20px;
   color: rgba(255, 255, 255, 0.75);
 }
@@ -931,11 +930,13 @@ div[data-role="editor-toolbar"] {
   margin-top: 20px;
   font-size: 34px;
   font-weight: 700;
+  text-align: center;
 }
 .info-box .title {
-  font-size: 12px;
+  font-size: 15px;
   text-transform: uppercase;
   font-weight: 600;
+  text-align:center;
 }
 .info-box .desc {
   margin-top: 10px;

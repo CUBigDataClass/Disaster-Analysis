@@ -2,6 +2,29 @@ var disasterAnalysis = angular.module('disasterAnalysis', []);
 
 disasterAnalysis.controller('displayGraphsController', ['$scope','$http',function ($scope,$http) {
 
+$scope.getData = function()
+{
+	// $http({
+	// method: 'GET',
+	// url: '/getTotalCount'
+	// }).then(function successCallback(response) 
+	// {
+	// 	$scope.count = response.data;
+	// 	console.log($scope.count)
+
+	// }, 
+	// function errorCallback(response) 
+	// {
+
+	// });
+	$http.get('/getTotalCount').success(function(data){
+		$scope.count = data;
+		console.log($scope);
+		console.log($scope.count);
+	});
+}
+setInterval($scope.getData, 15000);
+
 $scope.data = {
     repeatSelect: null,
     availableOptions: [
