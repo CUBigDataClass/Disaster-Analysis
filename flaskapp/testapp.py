@@ -47,31 +47,18 @@ def hello_world():
 
 @app.route('/getTotalCount',methods=['GET', 'POST'])
 def getTotalCount():
-    count  = ""
-    with open("/home/ec2-user/Disaster-Analysis/totalCount","r") as text_file:
-        count = str(text_file.readlines()[0])
-        return count
+    count = int(db.Tweets.count()) + 131351916
+    #count  = ""
+    #with open("/home/ec2-user/Disaster-Analysis/totalCount","r") as text_file:
+    #    count = str(text_file.readlines()[0])
+    return str(count)
 
 
 @app.route('/', defaults={'KeyWord': None})
-@app.route('/<KeyWord>')
 def test(KeyWord):
-    #count = db.Tweets.count()
-    count  = ""
-    with open("/home/ec2-user/Disaster-Analysis/totalCount","r") as text_file:
-        count = str(text_file.readlines()[0])
-    #print "Count: " , count
     if( KeyWord == None ): 
         return render_template('newIndex.html')#,count=count)
-    #return jsonify(data=KeyWord)
-    content = list(overView.find({},{'_id': 0,'date': 1,'average.'+KeyWord:1}))
-    content1 = []
-    #print (count, file=sys.stderr)
-    for x in content[0:5]:
-        content1.append([x['date'] , x['average'][KeyWord]])
-    #print content
-    return render_template('newIndex.html', content=json_util.dumps(content1))#, count=count)
-    #return render_template('test.html')
+    
 
 
 @app.route('/getJSON/', defaults={'KeyWord': None})

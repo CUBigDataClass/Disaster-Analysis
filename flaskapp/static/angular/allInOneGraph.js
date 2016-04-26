@@ -23,7 +23,7 @@ $scope.getData = function()
 		console.log($scope.count);
 	});
 }
-setInterval($scope.getData, 15000);
+setInterval($scope.getData, 1000);
 
 $scope.data = {
     repeatSelect: null,
