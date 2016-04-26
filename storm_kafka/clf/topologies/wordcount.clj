@@ -21,7 +21,7 @@
           )
      "count-bolt" (python-bolt-spec
           options
-          {"word-spout" :shuffle}
+          {"classify-bolt" :shuffle}
           "bolts.wordcount.WordCounter"
           ["word" "count"]
           :p 2
