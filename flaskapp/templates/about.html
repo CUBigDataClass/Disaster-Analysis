@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Disaster Analysis using tweets">
+    <meta name="author" content="BiggerData">
+
+    <title>Disaster Analysis using tweets</title>
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/static/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/static/css/map.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/widgets.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/style-responsive.css" rel="stylesheet" />
+    <link href="/static/css/xcharts.min.css" rel=" stylesheet">
+    <link href="/static/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+
+ </head>
+
+  <body ng-app="disasterAnalysis" ng-controller="displayGraphsController" >
+ <!-- {{count|angular}} -->
+  <section id="container" class="">
+      <header class="header dark-bg">
+            <div class="toggle-nav">
+                <div class="icon-reorder tooltips" data-original-title="" data-placement="bottom"><i class="icon_menu"></i></div>
+            </div>
+            <a href="" class="logo">Disaster <span class="lite">Analysis</span></a>
+                 <div class="nav search-row" id="top_menu">
+                 <ul class="nav top-menu">
+                        <form class="navbar-form">
+                            <input class="form-control" placeholder="Search" type="text">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+
+      </header>
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <ul class="sidebar-menu">
+                  <li class="active">
+                      <a class="" href="/">
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
+				<!--  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+
+                          <span>Charts</span>
+                       </a>
+                  </li> -->
+                  <li class="sub-menu">
+                      <a href="/about" class="">
+                          <span>About</span>
+
+                      </a>
+
+                  </li> 
+                  <li>
+                      <a class="" href="/team">
+                          <span>Team</span>
+                      </a>
+                  </li>
+
+              </ul>
+          </div>
+      </aside>
+
+      <section id="main-content">
+          <section class="wrapper">
+
+              <h1>Real-time disaster analysis using Twitter</h1>
+              <br>
+              <h2>The objective of the project is to detect disaster around the world and help people communicate for help at the time of disaster.</           h2>
+              <br>
+              <h3>Current Status</h3>
+              <ul>
+                <li>We started collecting data from Twitter Stream using Tweepy</li>
+                <li>We collected Tweets for 222 Keywords based on CloudFlower Data</li>
+                <li>We analyzed data for around 20 days from 24th March 2016 to 14th April 2016</li>
+                <li>Just using the count we could see huge potential in identifying a Disaster</li>
+                <li>We used Apache Spark to get total count every 10 minutes</li>
+                <li>Since many words have synonyms and are used in different context, we observed that count alone can't determine a topic</li>
+                <li>Hence we found the average over the period of 20 days and calculated the number of times above the average the disaster keywords            were used</li>
+                <li>We looked into the data and decided to have a systematic method to determine a Disaster</li>
+                <li>In the last 2 hours of data, if people have spoken about a keyword continuously for more than 80 minutes with a threshold of 8            times above the average we assume/confirm that a Disaster occured </li>
+                <li>Now we collect all the tweets in the last 2 hours and run a work count program to get all the words that were used with that            kwyword. Generally the location was part of the top 100 frequently used words. </li>
+                <li>We than used "MediaMeter CLIFF" - Entity Extraction and Geoparsing for News Article: It gives the Latitude and Longtitude if            there is a location in text provided.</li>
+                <li>We used the location data, date and searched in Google and in most Instance we found an Incident to have occured, We plotted            that on Google Maps with description from the first link. Although few of the links and data are irrelavent, almost all of them had           a diaster/incident on the provided date and time. </li>
+                <li>We are currently working on a system to make it Real Time!</li>
+              </ul>
+
+
+          </section>
+      </section>
+  </section>
+    
+    <script src="/static/js/jquery.js"></script> 
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
+    <script src="/static/bower_components/angular/angular.min.js"></script>
+    <script src="/static/c3.min.js"></script>
+    <script src="/static/d3/graphPerWord10MinuteAnalysis.js"></script>
+    <script src="/static/angular/allInOneGraph.js"></script>
+    <script src="/static/maps.js"></script> 
+
+
+  </body>
+</html>

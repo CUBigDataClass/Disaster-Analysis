@@ -45,6 +45,10 @@ def hello_world():
   return render_template('newIndex.html')
 
 
+@app.route('/about',methods=['GET', 'POST'])
+def about():
+    return render_template('about.html')
+
 @app.route('/getTotalCount',methods=['GET', 'POST'])
 def getTotalCount():
     count = int(db.Tweets.count()) + 131351916
@@ -106,7 +110,7 @@ def getHourlyCount():
         totalCount += 1 
     return render_template('displayGraphHourly.html', content=listCreation)
 
-@app.route('/team/')
+@app.route('/team')
 def team():
     return render_template('team.html')
 if __name__ == '__main__':
