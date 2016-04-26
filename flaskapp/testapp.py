@@ -119,7 +119,9 @@ def getHourlyCount():
         totalCount += 1 
     return render_template('displayGraphHourly.html', content=listCreation)
 
-
+@app.route('/team/')
+def team():
+    return render_template('team.html')
 if __name__ == '__main__':
   app.debug = True
   app.run(debug=True,host=app.config['SERVER_NAME'], port=80)
