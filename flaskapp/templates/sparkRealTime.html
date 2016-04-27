@@ -32,9 +32,6 @@
             <a href="" class="logo">Disaster <span class="lite">Analysis</span></a>
                  <div class="nav search-row" id="top_menu">
                  <ul class="nav top-menu">
-                        <form class="navbar-form">
-                            <input class="form-control" placeholder="Search" type="text">
-                        </form>
                     </li>
                 </ul>
             </div>
@@ -43,17 +40,23 @@
       <aside>
           <div id="sidebar"  class="nav-collapse ">
               <ul class="sidebar-menu">
-                  <li class="active">
+                  <li class="">
                       <a class="" href="/">
                           <span>Dashboard</span>
                       </a>
                   </li>
-				<!--  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <span>Charts</span>
-                       </a>
-                  </li> -->
-                  <li class="sub-menu">
+                <li>
+                      <a class="active" href="/realTimeSpark1">
+                          <span>Spark Real Time<br>(10 minutes)</span>
+                      </a>
+                  </li>
+
+                 <li>
+                      <a class="" href="/realTimeStorm1">
+                          <span>Storm Real Time<br>(10 Seconds)</span>
+                      </a>
+                  </li>  
+		<li class="sub-menu">
                       <a href="/about" class="">
                           <span>About</span>
 
@@ -107,7 +110,6 @@
     <script src="/static/c3.min.js"></script>
     <script src="/static/d3/graphPerWord10MinuteAnalysis.js"></script>
     <script src="/static/angular/realTimeSparkController.js"></script>
-    <script src="/static/maps.js"></script> 
 
 
   </body>

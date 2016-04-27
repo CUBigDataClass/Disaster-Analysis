@@ -53,6 +53,17 @@ def hello_world():
 def about():
     return render_template('about.html')
 
+
+@app.route('/realTimeSpark1',methods=['GET', 'POST'])
+def realTimeSpark1():
+    return render_template('sparkRealTime.html')
+
+
+@app.route('/realTimeStorm1',methods=['GET', 'POST'])
+def realTimeStorm1():
+    return render_template('stormRealTime.html')
+
+
 @app.route('/getTotalCount',methods=['GET', 'POST'])
 def getTotalCount():
     count = int(db.Tweets.count()) + 131351916

@@ -32,9 +32,6 @@
             <a href="" class="logo">Disaster <span class="lite">Analysis</span></a>
                  <div class="nav search-row" id="top_menu">
                  <ul class="nav top-menu">
-                        <form class="navbar-form">
-                            <input class="form-control" placeholder="Search" type="text">
-                        </form>
                     </li>
                 </ul>
             </div>
@@ -48,13 +45,18 @@
                           <span>Dashboard</span>
                       </a>
                   </li>
-				<!--  <li class="sub-menu">
-                      <a href="javascript:;" class="">
+                 <li>
+                      <a class="" href="/realTimeSpark1">
+                          <span>Spark Real Time<br>(10 minutes)</span>
+                      </a>
+                  </li>
 
-                          <span>Charts</span>
-                       </a>
-                  </li> -->
-                  <li class="sub-menu">
+                 <li>
+                      <a class="" href="/realTimeStorm1">
+                          <span>Storm Real Time<br>(10 Seconds)</span>
+                      </a>
+                  </li> 
+		 <li class="sub-menu">
                       <a href="/about" class="">
                           <span>About</span>
 
@@ -89,11 +91,13 @@
                 <li>Hence we found the average over the period of 20 days and calculated the number of times above the average the disaster keywords            were used</li>
                 <li>We looked into the data and decided to have a systematic method to determine a Disaster</li>
                 <li>In the last 2 hours of data, if people have spoken about a keyword continuously for more than 80 minutes with a threshold of 8            times above the average we assume/confirm that a Disaster occured </li>
-                <li>Now we collect all the tweets in the last 2 hours and run a work count program to get all the words that were used with that            kwyword. Generally the location was part of the top 100 frequently used words. </li>
+                <li>Now we collect all the tweets in the last 2 hours and run a work count program to get all the words that were used with that            keyword. Generally the location was part of the top 100 frequently used words. </li>
                 <li>We than used "MediaMeter CLIFF" - Entity Extraction and Geoparsing for News Article: It gives the Latitude and Longtitude if            there is a location in text provided.</li>
-                <li>We used the location data, date and searched in Google and in most Instance we found an Incident to have occured, We plotted            that on Google Maps with description from the first link. Although few of the links and data are irrelavent, almost all of them had           a diaster/incident on the provided date and time. </li>
-                <li>We are currently working on a system to make it Real Time!</li>
-              </ul>
+                <li>We used the location data, date and searched in Google, and in most instances we found an incident to have occured. We plotted            that on Google Maps with description from the first link. Although a few of the links and data are irrelavent, almost all of them had           a disaster/incident on the provided date and time. </li>
+              	<li>We have real time updates captured for every 10 minutes by using Apache Spark, and for every 10 seconds using Apache Storm.</li>
+		<li>While capturing the data using Apache Storm we actually trained a Machine Learning Model (Using Latent Semantic Analysis and Naive Bayes), which gave a classification accuracy of 76% for Tweets relating to Disasters.</li>
+		<li><b>Future Work:</b>We plan to identify places where help is need and communicate effectively with them.</li>
+	      </ul>
 
 
           </section>
@@ -109,7 +113,6 @@
     <script src="/static/c3.min.js"></script>
     <script src="/static/d3/graphPerWord10MinuteAnalysis.js"></script>
     <script src="/static/angular/allInOneGraph.js"></script>
-    <script src="/static/maps.js"></script> 
 
 
   </body>
