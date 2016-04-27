@@ -103,9 +103,22 @@ def getRealTimeSpark(KeyWord):
 @app.route('/getRealSecondJSON/<KeyWord>')
 def getRealTimeStorm(KeyWord):
     #print "Content: " ,list(realTimeCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('data',pymongo.DESCENDING))[0:12]
-    content = list(realTimeCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('data',pymongo.ASCENDING))[0:12]
+    content = list(realTimeCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('date',pymongo.DESCENDING))[0:1]
     content1 = []
     for x in content:
+        print x['date']
+        content1.append([x['date'] , x['count'][KeyWord]])
+    return json_util.dumps(content1)
+
+
+@app.route('/getRealSecondJSON20/', defaults={'KeyWord': None})
+@app.route('/getRealSecondJSON20/<KeyWord>')
+def getRealTimeStorm20(KeyWord):
+    #print "Content: " ,list(realTimeCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('data',pymongo.DESCENDING))[0:12]
+    content = list(realTimeCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('date',pymongo.DESCENDING))[0:20][::-1]
+    content1 = []
+    for x in content:
+        print x['date']
         content1.append([x['date'] , x['count'][KeyWord]])
     return json_util.dumps(content1)
 

@@ -234,7 +234,7 @@ $scope.getGraphInfo = function ()
 	{
 		$http({
   			method: 'GET',
-  			url: '/getRealSecondJSON/' +  $scope.data.repeatSelect
+  			url: '/getRealSecondJSON20/' +  $scope.data.repeatSelect
 			}).then(function successCallback(response) 
 			{
 				 getGraph(response.data,$scope.data.repeatSelect);

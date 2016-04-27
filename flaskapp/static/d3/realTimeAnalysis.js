@@ -28,38 +28,19 @@ var getGraph = (function (content,key) {
 
                         // set up the updating of the chart each second
                         var series = this.series[0];
+			//console.log("Series:" , series)
+			var dateInfo = ""
                         setInterval(function () {
-                            /*var x = (new Date()).getTime(), // current time
-                                y = Math.random();
-                            series.addPoint([x, y], true, true);*/
-			/*$http({
-  			method: 'GET',
-  			url: '/getRealSecondJSON/' +  key
-			}).then(function successCallback(response) 
+			var y = "" ;
+			$.get("http://ec2-52-39-134-88.us-west-2.compute.amazonaws.com/getRealSecondJSON/" + key , function( data1)
 			{
-			   //for i in response.data:
-				console.log(response.data)
-			}, function errorCallback(response) {
-			 });
-			*/
-			/*
-			var xhr = new XMLHttpRequest();
-			xhr.open('GET', "http://ec2-52-39-134-88.us-west-2.compute.amazonaws.com/getRealSecondJSON/bomb", false);
-			xhr.send();
-			xhr.onreadystatechange = processRequest;
-			function processRequest(e) {
-    				if (xhr.readyState == 4 && xhr.status == 200) {
-        				var response = JSON.parse(xhr.responseText);
-        				//console.log(response);
-    					}
-			}
-			*/
-			$.get("http://ec2-52-39-134-88.us-west-2.compute.amazonaws.com/getRealSecondJSON/bomb", function( data) 
-			{
-				console.log(data)
+				data1 = $.parseJSON(data1)
+				y = data1[0][1]
+				var x = data1[0][0]['$date']
+				series.addPoint([x, y], true, true);	
 			});
-                        }, 1000);
-                    }
+			},10000);
+		   }
                 }
             },
             title: {
@@ -95,20 +76,6 @@ var getGraph = (function (content,key) {
             series: [{
                 name: 'Random data',
                 data: data
-                /*(function () {
-                    // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i;
-
-                    for (i = -19; i <= 0; i += 1) {
-                        data.push({
-                            x: time + i * 1000,
-                            y: Math.random()
-                        });
-                    }
-                    return data;
-                }())*/
             }]
         });
     });
