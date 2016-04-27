@@ -19,6 +19,7 @@ db = client['disaster']
 overView = db['overAll10MinuteAverage']
 overViewAverageNew = db['overViewAverage']
 realTimeCount10Sec = db['realTimeCount10Sec']
+realTimeMLCount10Sec = db['realTimeMLCount10Sec']
 
 Tweets = db['Tweets']
 ########## SPARK RELATED #############
@@ -111,6 +112,18 @@ def getRealTimeStorm(KeyWord):
     return json_util.dumps(content1)
 
 
+@app.route('/getRealSecondJSONML/', defaults={'KeyWord': None})
+@app.route('/getRealSecondJSONML/<KeyWord>')
+def getRealTimeStormML(KeyWord):
+    #print "Content: " ,list(realTimeCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('data',pymongo.DESCENDING))[0:12]
+    content = list(realTimeMLCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('date',pymongo.DESCENDING))[0:1]
+    content1 = []
+    for x in content:
+        print x['date']
+        content1.append([x['date'] , x['count'][KeyWord]])
+    return json_util.dumps(content1)
+
+
 @app.route('/getRealSecondJSON20/', defaults={'KeyWord': None})
 @app.route('/getRealSecondJSON20/<KeyWord>')
 def getRealTimeStorm20(KeyWord):
@@ -121,6 +134,19 @@ def getRealTimeStorm20(KeyWord):
         print x['date']
         content1.append([x['date'] , x['count'][KeyWord]])
     return json_util.dumps(content1)
+
+
+@app.route('/getRealSecondJSON20ML/', defaults={'KeyWord': None})
+@app.route('/getRealSecondJSON20ML/<KeyWord>')
+def getRealTimeStorm20ML(KeyWord):
+    #print "Content: " ,list(realTimeCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('data',pymongo.DESCENDING))[0:12]
+    content = list(realTimeMLCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('date',pymongo.DESCENDING))[0:20][::-1]
+    content1 = []
+    for x in content:
+        print x['date']
+        content1.append([x['date'] , x['count'][KeyWord]])
+    return json_util.dumps(content1)
+
 
 @app.route('/getCount/',methods=['GET', 'POST'])
 def getCount():

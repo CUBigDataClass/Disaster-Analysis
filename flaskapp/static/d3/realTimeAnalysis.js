@@ -1,16 +1,17 @@
-var getGraph = (function (content,key) {
+var getGraph = (function (content,content1, key) {
     "use strict",
-    data =content
+    data20 = content
+    data10 = content1
     function logArrayElements(element, index, array) {
         objects = element[0]
         for(var key in objects) {
            var value = objects[key];
         } 
-        //console.log([new Date(value),element[1]]);
-        element[0] = value
-        //return [new Date(value),element[1]]
-    }   
-    data.forEach(logArrayElements)
+                element[0] = value
+       }   
+        
+    data20.forEach(logArrayElements)
+    data10.forEach(logArrayElements)
     $(document).ready(function () {
         Highcharts.setOptions({
             global: {
@@ -28,23 +29,31 @@ var getGraph = (function (content,key) {
 
                         // set up the updating of the chart each second
                         var series = this.series[0];
-			//console.log("Series:" , series)
-			var dateInfo = ""
+			var series1 = this.series[1];
+	
                         setInterval(function () {
-			var y = "" ;
 			$.get("http://ec2-52-39-134-88.us-west-2.compute.amazonaws.com/getRealSecondJSON/" + key , function( data1)
 			{
 				data1 = $.parseJSON(data1)
 				y = data1[0][1]
 				var x = data1[0][0]['$date']
-				series.addPoint([x, y], true, true);	
+				//series.addPoint([x, y], true, true);	
+			
+			$.get("http://ec2-52-39-134-88.us-west-2.compute.amazonaws.com/getRealSecondJSONML/" + key , function( data2)
+			{
+				data2 = $.parseJSON(data2)
+				y1 = data2[0][1]
+				var x1 = data2[0][0]['$date']
+				series.addPoint([x, y], true, true);
+				series1.addPoint([x1, y1], true, true);
 			});
+			})
 			},10000);
 		   }
                 }
             },
             title: {
-                text: 'Live random data'
+                text: 'Real Time Keyword Count'
             },
             xAxis: {
                 type: 'datetime',
@@ -74,9 +83,12 @@ var getGraph = (function (content,key) {
                 enabled: false
             },
             series: [{
-                name: 'Random data',
-                data: data
-            }]
+                name: 'Keyword count without ML',
+                data: data20
+            },{
+		name: 'Keyword count with ML', 
+		data: data10
+	    }]
         });
     });
 })

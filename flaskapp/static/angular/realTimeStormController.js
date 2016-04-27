@@ -237,7 +237,10 @@ $scope.getGraphInfo = function ()
   			url: '/getRealSecondJSON20/' +  $scope.data.repeatSelect
 			}).then(function successCallback(response) 
 			{
-				 getGraph(response.data,$scope.data.repeatSelect);
+				$http({ method: 'GET', url: '/getRealSecondJSON20ML/' + $scope.data.repeatSelect }).then(function successCallback(response1)
+				{
+				 getGraph(response.data, response1.data, $scope.data.repeatSelect);
+				}, function errorCallback(response1) { });
     			}, function errorCallback(response) {
                      });
 	}
