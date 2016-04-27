@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Disaster Analysis using tweets">
+    <meta name="author" content="BiggerData">
+
+    <title>Disaster Analysis using tweets</title>
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/static/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/static/css/map.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/widgets.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/style-responsive.css" rel="stylesheet" />
+    <link href="/static/css/xcharts.min.css" rel=" stylesheet">
+    <link href="/static/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+
+ </head>
+
+  <body ng-app="disasterAnalysis" ng-controller="realTimeSparkController" >
+ <!-- {{count|angular}} -->
+  <section id="container" class="">
+      <header class="header dark-bg">
+            <div class="toggle-nav">
+                <div class="icon-reorder tooltips" data-original-title="" data-placement="bottom"><i class="icon_menu"></i></div>
+            </div>
+            <a href="" class="logo">Disaster <span class="lite">Analysis</span></a>
+                 <div class="nav search-row" id="top_menu">
+                 <ul class="nav top-menu">
+                        <form class="navbar-form">
+                            <input class="form-control" placeholder="Search" type="text">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+
+      </header>
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <ul class="sidebar-menu">
+                  <li class="active">
+                      <a class="" href="/">
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
+				<!--  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <span>Charts</span>
+                       </a>
+                  </li> -->
+                  <li class="sub-menu">
+                      <a href="/about" class="">
+                          <span>About</span>
+
+                      </a>
+
+                  </li> 
+                  <li>
+                      <a class="" href="/team">
+                          <span>Team</span>
+                      </a>
+                  </li>
+
+              </ul>
+          </div>
+      </aside>
+
+      <section id="main-content">
+          <section class="wrapper">
+
+            <div>
+            <div class="page-header">
+            <form name="myForm">
+                <label for="repeatSelect"> Select a Disaster Type: </label>
+                <select name="repeatSelect" id="repeatSelect" ng-model="data.repeatSelect" ng-change="getGraphInfo()" >
+                  <option ng-repeat="option in data.availableOptions" value="{{option.id|angular}}">{{option.name|angular}}</option>
+                </select>
+            </form>
+	    <div id="dropdown-terms" style="width: 500px; height: 400px;"></div>
+            </div>
+          </section>
+      </section>
+  </section>
+    <!-- javascripts -->
+    
+    <script src="/static/js/jquery.js"></script> 
+   <!-- <script src="/static/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="/static/js/jquery-1.8.3.min.js"></script>-->
+  <!--  <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>-->
+    <!-- bootstrap -->
+   <!-- <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.min.js"></script>
+    <script src="/static/js/jquery.nicescroll.js" type="text/javascript"></script>-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <!-- <script src="js/c3Visualization.js" type="text/javascript"></script> -->
+
+    <!-- <script src="/static/js/scripts.js"></script> -->
+    
+
+    <script src="/static/bower_components/angular/angular.min.js"></script>
+    <script src="/static/c3.min.js"></script>
+    <script src="/static/d3/graphPerWord10MinuteAnalysis.js"></script>
+    <script src="/static/angular/realTimeSparkController.js"></script>
+    <script src="/static/maps.js"></script> 
+
+
+  </body>
+</html>

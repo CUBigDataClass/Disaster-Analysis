@@ -15,8 +15,11 @@ from pymongo import MongoClient
 client = MongoClient('localhost',27017)
 
 db = client['disaster']
-overView = db['overView']
+#overView = db['overView']
 overView = db['overAll10MinuteAverage']
+overViewAverageNew = db['overViewAverage']
+realTimeCount10Sec = db['realTimeCount10Sec']
+
 Tweets = db['Tweets']
 ########## SPARK RELATED #############
 
@@ -63,6 +66,15 @@ def test(KeyWord):
     if( KeyWord == None ): 
         return render_template('newIndex.html')#,count=count)
     
+@app.route('/realTimeSpark', defaults={'KeyWord': None})
+def realTimeSpark(KeyWord):
+    if( KeyWord == None ):
+        return render_template('sparkRealTime.html')
+
+@app.route('/realTimeStorm', defaults={'KeyWord': None})
+def realTimeStorm(KeyWord):
+    if ( KeyWord == None ):
+        return render_template('stormRealTime.html')
 
 
 @app.route('/getJSON/', defaults={'KeyWord': None})
@@ -74,6 +86,28 @@ def test1(KeyWord):
         content1.append([x['date'] , x['average'][KeyWord]])
     return json_util.dumps(content1)
 
+
+@app.route('/getRealJSON/', defaults={'KeyWord': None})
+@app.route('/getRealJSON/<KeyWord>')
+def getRealTimeSpark(KeyWord):
+    content = list(overViewAverageNew.find({'average.'+KeyWord: { "$not": { "$type": 10},"$exists" : "true"   } },{'_id': 0,'date': 1,'average.'+KeyWord:1}))
+    #print content
+    content1 = []
+    for x in content:
+	content1.append([x['date'] , x['average'][KeyWord]])
+    return json_util.dumps(content1)
+
+
+
+@app.route('/getRealSecondJSON/', defaults={'KeyWord': None})
+@app.route('/getRealSecondJSON/<KeyWord>')
+def getRealTimeStorm(KeyWord):
+    #print "Content: " ,list(realTimeCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('data',pymongo.DESCENDING))[0:12]
+    content = list(realTimeCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('data',pymongo.ASCENDING))[0:12]
+    content1 = []
+    for x in content:
+        content1.append([x['date'] , x['count'][KeyWord]])
+    return json_util.dumps(content1)
 
 @app.route('/getCount/',methods=['GET', 'POST'])
 def getCount():
@@ -110,7 +144,7 @@ def getHourlyCount():
         totalCount += 1 
     return render_template('displayGraphHourly.html', content=listCreation)
 
-@app.route('/team')
+@app.route('/team/', methods=['GET', 'POST'])
 def team():
     return render_template('team.html')
 if __name__ == '__main__':

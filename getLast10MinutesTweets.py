@@ -30,5 +30,5 @@ def getAboveAverage(date,count):
     return {'date': date , 'average': noOfTimesTheAverage}
 
 getAbvAverage=getAboveAverage(dateNow,count)
-db.overViewAverage.insert_one({"date": dateNow , "average": getAbvAverage} )
+db.overViewAverage.insert_one(getAbvAverage)
 
