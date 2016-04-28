@@ -107,6 +107,14 @@ sc = SparkContext(conf=conf)
 rdd = sc.mongoRDD('mongodb://localhost:27017/disaster.Tweets')
 rdd.count()
 ```
+
+##[Demo](https://www.youtube.com/watch?v=R3QPkohuUBQ)
+##Architecture
+![System architecture](frontend/Big_Data.png)
+
+
+
+
 ##The Dashboard
 ![Our Dashboard](frontend/Dashboard.png) 
 
