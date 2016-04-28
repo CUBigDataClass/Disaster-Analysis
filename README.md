@@ -107,5 +107,29 @@ sc = SparkContext(conf=conf)
 rdd = sc.mongoRDD('mongodb://localhost:27017/disaster.Tweets')
 rdd.count()
 ```
+##The Dashboard
+![Our Dashboard](frontend/Dashboard.png) 
+
+##Tweet Location Map
+![Tweet Location Map](frontend/LocationMap.png) 
+
+##Realtime keyword count with and without Machine Learning Algorithms
+![Real Time Spark](frontend/Realtime.png) 
+
+##Realtime Donut Graph with keyword count
+![Realtime Donut Graph](frontend/DonutGraphRealtime.png)
+
+## About
+![About](frontend/About.png) 
+
+##Team
+![Team](frontend/Team.png) 
+
+
+
+
+
+
+
 
 
