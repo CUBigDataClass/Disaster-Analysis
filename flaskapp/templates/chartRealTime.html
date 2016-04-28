@@ -22,7 +22,7 @@
 
  </head>
 
-  <body ng-app="disasterAnalysis" ng-controller="realTimeSparkController" >
+  <body ng-app="disasterAnalysis" ng-controller="realTimeChartController" >
  <!-- {{count|angular}} -->
   <section id="container" class="">
       <header class="header dark-bg">
@@ -55,19 +55,19 @@
                       <a class="active" href="/realTimeStorm1">
                           <span>Storm Real Time<br>(10 Seconds)</span>
                       </a>
-                  </li> 
-		 <li>
+                  </li>
+		<li>
                       <a class="" href="/realTimeChart">
                           <span>Real Time Chart</span>
                       </a>
-                  </li> 
+                  </li>  
 		<li class="sub-menu">
                       <a href="/about" class="">
                           <span>About</span>
 
                       </a>
 
-                  </li> 
+                  </li>
                   <li>
                       <a class="" href="/team">
                           <span>Team</span>
@@ -83,12 +83,6 @@
 
             <div>
             <div class="page-header">
-            <form name="myForm">
-                <label for="repeatSelect"> Select a Disaster Type: </label>
-                <select name="repeatSelect" id="repeatSelect" ng-model="data.repeatSelect" ng-change="getGraphInfo()" >
-                  <option ng-repeat="option in data.availableOptions" value="{{option.id|angular}}">{{option.name|angular}}</option>
-                </select>
-            </form>
 	    <div id="dropdown-terms" style="width: 500px; height: 400px;"></div>
             </div>
           </section>
@@ -113,8 +107,8 @@
 
     <script src="/static/bower_components/angular/angular.min.js"></script>
     <script src="/static/c3.min.js"></script>
-    <script src="/static/d3/realTimeAnalysis.js"></script>
-    <script src="/static/angular/realTimeStormController.js"></script>
+    <script src="/static/d3/realTimeChart.js"></script>
+    <script src="/static/angular/realTimeChartController.js"></script>
 
 
   </body>

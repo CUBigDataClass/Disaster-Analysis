@@ -88,6 +88,9 @@ def realTimeStorm(KeyWord):
     if ( KeyWord == None ):
         return render_template('stormRealTime.html')
 
+@app.route('/realTimeChart')
+def realTimeChart():
+    return render_template('chartRealTime.html')
 
 @app.route('/getJSON/', defaults={'KeyWord': None})
 @app.route('/getJSON/<KeyWord>')
@@ -118,7 +121,7 @@ def getRealTimeStorm(KeyWord):
     content = list(realTimeCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('date',pymongo.DESCENDING))[0:1]
     content1 = []
     for x in content:
-        print x['date']
+        # print x['date']
         content1.append([x['date'] , x['count'][KeyWord]])
     return json_util.dumps(content1)
 
@@ -130,7 +133,7 @@ def getRealTimeStormML(KeyWord):
     content = list(realTimeMLCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('date',pymongo.DESCENDING))[0:1]
     content1 = []
     for x in content:
-        print x['date']
+       # print x['date']
         content1.append([x['date'] , x['count'][KeyWord]])
     return json_util.dumps(content1)
 
@@ -142,9 +145,16 @@ def getRealTimeStorm20(KeyWord):
     content = list(realTimeCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('date',pymongo.DESCENDING))[0:20][::-1]
     content1 = []
     for x in content:
-        print x['date']
+       # print x['date']
         content1.append([x['date'] , x['count'][KeyWord]])
     return json_util.dumps(content1)
+
+
+@app.route('/getRealSecondJSONforAll')
+def getRealSecondJSONforAll():
+    content = list(realTimeCount10Sec.find({},{'_id': 0,'date': 1,'count':1}).sort('date',pymongo.DESCENDING))[0:1]
+    #print content[0]['count'].items()
+    return json_util.dumps(content[0]['count'].items())
 
 
 @app.route('/getRealSecondJSON20ML/', defaults={'KeyWord': None})
@@ -154,7 +164,7 @@ def getRealTimeStorm20ML(KeyWord):
     content = list(realTimeMLCount10Sec.find({},{'_id': 0,'date': 1,'count.'+KeyWord:1}).sort('date',pymongo.DESCENDING))[0:20][::-1]
     content1 = []
     for x in content:
-        print x['date']
+        #print x['date']
         content1.append([x['date'] , x['count'][KeyWord]])
     return json_util.dumps(content1)
 
