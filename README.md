@@ -108,7 +108,7 @@ rdd = sc.mongoRDD('mongodb://localhost:27017/disaster.Tweets')
 rdd.count()
 ```
 
-##[Demo](https://www.youtube.com/watch?v=R3QPkohuUBQ)
+##[Demo](https://www.youtube.com/watch?v=Z7wXQmQcQ4Y)
 ##Architecture
 ![System architecture](frontend/Big_Data.png)
 
@@ -134,7 +134,7 @@ rdd.count()
 ![Team](frontend/Team.png) 
 
 ##A Small Demo!
-https://www.youtube.com/watch?v=R3QPkohuUBQ
+https://www.youtube.com/watch?v=Z7wXQmQcQ4Y
 
 
 
