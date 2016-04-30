@@ -47,7 +47,7 @@ count = {'bomb': 0, 'violent storm': 0, 'hijacker': 0, 'bombed': 0, 'sunk': 0, '
 def update_dict():
     #count = dict.fromkeys(count, 0)
     for issue in count.keys():
-        count[issue] += 0
+        count[issue] = 0
 
 def update_count(content):
     sen = re.sub(r'[^A-Za-z0-9_ ]', "", content)

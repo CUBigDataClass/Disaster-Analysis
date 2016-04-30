@@ -17,14 +17,14 @@
           {"word-spout" :shuffle}
           "bolts.classifytweet.ClassifyTweet"
           ["word"]
-          :p 1
+          :p 2
           )
      "count-bolt" (python-bolt-spec
           options
-          {"classify-bolt" :shuffle}
+          {"word-spout" :shuffle}
           "bolts.wordcount.WordCounter"
           ["word" "count"]
-          :p 1
+          :p 2
           )
     }
   ]

@@ -28,7 +28,7 @@ countAverage={'desolate': 1.6028189374774124, 'bomb': 472.761474521142, 'violent
 
 def update_ten_dict():
     for issue in ten_sec_count.keys():
-        ten_sec_count[issue] += 0
+        ten_sec_count[issue] = 0
 
 def update_ten_count(content):
     sen = re.sub(r'[^A-Za-z0-9_ ]', "", content)
@@ -43,7 +43,7 @@ def addToTenDb(stime):
 def update_dict():
     #count = dict.fromkeys(count, 0)
     for issue in count.keys():
-        count[issue] += 0
+        count[issue] = 0
 
 def update_count(content):
     sen = re.sub(r'[^A-Za-z0-9_ ]', "", content)
@@ -93,10 +93,12 @@ class WordCounter(Bolt):
         current = datetime.datetime.now()
         diff = current - self.starttime
 
+        diff_ten = current - self.start_ten_time
+
         msg = "GHOST %%%%"
         self.log('%s: %s' % (msg, word))
 
-        if diff.seconds > 10:
+        if diff_ten.seconds > 10:
             res = addToTenDb(self.start_ten_time) #self.keywords, self.countAverage)
             update_ten_dict()
             self.start_ten_time = datetime.datetime.now()
